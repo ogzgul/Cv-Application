@@ -4,6 +4,7 @@ using Cv.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cv.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230325091702_memberss")]
+    partial class memberss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +55,7 @@ namespace Cv.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Course", (string)null);
+                    b.ToTable("Course");
                 });
 
             modelBuilder.Entity("Cv.Models.Education", b =>
@@ -98,7 +100,7 @@ namespace Cv.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("Education", (string)null);
+                    b.ToTable("Education");
                 });
 
             modelBuilder.Entity("Cv.Models.Experience", b =>
@@ -126,7 +128,7 @@ namespace Cv.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Experience", (string)null);
+                    b.ToTable("Experience");
                 });
 
             modelBuilder.Entity("Cv.Models.Language", b =>
@@ -148,7 +150,7 @@ namespace Cv.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Language", (string)null);
+                    b.ToTable("Language");
                 });
 
             modelBuilder.Entity("Cv.Models.Member", b =>
@@ -190,7 +192,7 @@ namespace Cv.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Member", (string)null);
+                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("Cv.Models.Reference", b =>
@@ -227,7 +229,7 @@ namespace Cv.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reference", (string)null);
+                    b.ToTable("Reference");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

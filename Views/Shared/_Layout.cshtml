@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using Cv.Data;
+@using Microsoft.EntityFrameworkCore
+@inject ApplicationDbContext context
+@using System.Security.Claims;
+@inject IHttpContextAccessor Httpcontext
+@{
+    List<Member> members = context.Member.ToList();
+    List<Education> educations = context.Education.ToList();
+    List<Course> courses = context.Course.OrderBy(c => c.StartDate).ToList();
+
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,6 +21,11 @@
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
+
+<script>
+   
+
+</script>
 <body>
     <div class="container-fluid mt-5" >
         <div class="row">
@@ -50,6 +66,9 @@
                         <span>Referans</span>
                     </span>
                 </a>
+                <form asp-controller="pdf" asp-action="Get" method="get">
+                    <button type="submit">Download</button>
+                </form>
                 <partial name="_LoginPartial" />
                
             </div>
@@ -59,7 +78,24 @@
                 </main>
             </div>
             <div class="col-5 divCol">
-
+                <div id="Members">
+                    @foreach(Member member in members)
+                    {
+                        <h1>@member.Name</h1>
+                        <h2>@member.Surname</h2>
+                        <h3>@member.Address</h3>
+                        <p>@member.PhoneNumber</p>
+                        <p>@member.Email</p>
+                    }
+                    @foreach(Education education in educations)
+                    {
+                        <p>@education.GNO</p>
+                        @education.Degree
+                        @education.Country
+                        @education.SchoolName
+                    }
+                    <div></div>
+                </div>
             </div>
         </div>
     </div>
