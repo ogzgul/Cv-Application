@@ -70,3 +70,87 @@ body {
 .form-control{
     width:auto!important;
 }
+
+/*Profile Div*/
+.profile {
+    width: 105%;
+    background-color: rgb(14, 55, 78);
+    border-radius: 4%;
+    line-height: 18px;
+    font-size: 11pt;
+    /* white-space: pre-wrap; */
+    border: none;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 25.5pt;
+    letter-spacing: inherit;
+    font-family: inherit;
+    line-height: 38px;
+    padding-bottom: 0.2em;
+}
+.JobTitle {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 19.2525pt;
+    line-height: 29px;
+    padding-bottom: 0.16em;
+}
+.mail {
+    display: block;
+    margin-left: 106.5px;
+    margin-right: 0px;
+    background-color: transparent;
+}
+
+.resumepage {
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    line-height: 18px;
+    font-size: 11pt;
+    font-family: "Source Sans Pro";
+    font-stretch: normal;
+    width: 210mm;
+    min-width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    text-rendering: geometricprecision !important;
+    font-variant-ligatures: none !important;
+}
+.resumeHeader {
+    width: 100%;
+    padding: 15.4708mm 16mm 8.40687mm;
+    background-color: rgb(14, 55, 78);
+    line-height: 18px;
+    font-size: 11pt;
+    white-space: pre-wrap;
+    border: none;
+}
+
+.headerOne {
+    width: 100%;
+    color: rgb(255, 255, 255) !important;
+}
+
+.profileHeader {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+.namee {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

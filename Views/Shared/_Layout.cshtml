@@ -21,11 +21,38 @@
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
-
 <script>
-   
+    async function handlePdf() {
+        var element = document.getElementById('Members')
+        var opt = {
+            filename: new Date().getTime() + '.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: {
+                dpi: 192,
+                scale: 4,
+                letterRendering: true,
+                useCORS: true,
+            },
+            jsPDF: {
+                unit: 'mm',
+                format: 'a4',
+                orientation: 'portrait',
+            },
+        }
+        let pdf = await html2pdf().from(element).set(opt).toPdf().get('pdf')
+
+        var popUp = window.open(pdf.output('bloburl'), '_blank')
+        if (popUp == null || typeof popUp == 'undefined') {
+            html2pdf().from(element).set(opt).save()
+            // alert('Please disable your pop-up blocker and try again.')
+        } else {
+            popUp.focus()
+        }
+        // html2pdf().from(element).set(opt).save()
+    }
 
 </script>
+
 <body>
     <div class="container-fluid mt-5" >
         <div class="row">
@@ -66,9 +93,9 @@
                         <span>Referans</span>
                     </span>
                 </a>
-                <form asp-controller="pdf" asp-action="Get" method="get">
-                    <button type="submit">Download</button>
-                </form>
+                
+                <a onclick="handlePdf()" class="btn btn-primary">pdf</a>
+               
                 <partial name="_LoginPartial" />
                
             </div>
@@ -77,28 +104,36 @@
                     @RenderBody()
                 </main>
             </div>
-            <div class="col-5 divCol">
-                <div id="Members">
-                    @foreach(Member member in members)
+            <div id="Members" class="col-5 divCol">
+                @foreach(Member member in members)
                     {
-                        <h1>@member.Name</h1>
-                        <h2>@member.Surname</h2>
-                        <h3>@member.Address</h3>
-                        <p>@member.PhoneNumber</p>
-                        <p>@member.Email</p>
-                    }
-                    @foreach(Education education in educations)
-                    {
-                        <p>@education.GNO</p>
-                        @education.Degree
-                        @education.Country
-                        @education.SchoolName
-                    }
-                    <div></div>
+                <div  class="profile" >
+                        <div style="display: flex; flex-direction: column; align-items: center; color:#ffffff" >
+                            <span class="name">@member.Name @member.Surname</span>
+                            <span class="JobTitle">@member.JobTitle</span>
+                        </div>
+                        <div style="width: 100%;display: flex;flex-wrap: wrap;-webkit-box-pack: center;justify-content: center; text-align: center;">
+                            <a href="mailto:@member.Email" class="mail">
+                                <span><i class="fa-sharp fa-solid fa-envelope"></i></span>
+                                <span>@member.Email</span>
+                            </a>
+                            <a href="tel:@member.PhoneNumber" class="mail">
+                                <span><i class="fa-sharp fa-solid fa-phone"></i></span>
+                                <span>@member.PhoneNumber</span>
+                            </a>
+                            <div  class="mail">
+                                <span><i class="fa-sharp fa-solid fa-phone"></i></span>
+                                <span>@member.Address</span>
+                            </div>
+                            
+                        </div>
                 </div>
+                    }
+                    
             </div>
         </div>
     </div>
+    
     
 @*
     <footer class="border-top footer text-muted">
@@ -109,6 +144,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
