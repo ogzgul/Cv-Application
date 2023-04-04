@@ -138,7 +138,15 @@ body {
 
 .headerOne {
     width: 100%;
-    color: rgb(255, 255, 255) !important;
+    padding: 15.4708mm 16mm 8.40687mm;
+    background-color: rgb(14, 55, 78);
+    line-height: 18px;
+    font-size: 11pt;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .profileHeader {
@@ -153,4 +161,66 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.formatA4 {
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    line-height: 18px;
+    font-size: 11pt;
+    font-family: "Source Sans Pro";
+    font-stretch: normal;
+    width: 210mm;
+    min-width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    text-rendering: geometricprecision !important;
+    font-variant-ligatures: none !important;
+}
+
+.headerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mailDiv {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    column-gap:26px;
+}
+
+.bodyCv {
+    width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-bottom: 0.82em;
+    text-align: center;
+    border-radius: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: rgba(14, 55, 78, 0.07);
+}
+
+.bodyCvv {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0mm 16mm 10.4437mm;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }

@@ -7,6 +7,9 @@
     List<Member> members = context.Member.ToList();
     List<Education> educations = context.Education.ToList();
     List<Course> courses = context.Course.OrderBy(c => c.StartDate).ToList();
+    List<Experience> experiences = context.Experience.ToList();
+    List<Language> languages = context.Language.ToList();
+    List<Reference> references = context.Reference.ToList();
 
 }
 <!DOCTYPE html>
@@ -23,7 +26,7 @@
 </head>
 <script>
     async function handlePdf() {
-        var element = document.getElementById('Members')
+        var element = document.getElementById('formatA4')
         var opt = {
             filename: new Date().getTime() + '.pdf',
             image: { type: 'jpeg', quality: 1 },
@@ -134,7 +137,150 @@
         </div>
     </div>
     
-    
+   
+        <div id="formatA4" class="formatA4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 headerOne">
+                        @foreach(Member member1 in members)
+                        {
+                            <div class="headerDiv" >
+                            <span class="name">
+                                @member1.Name @member1.Surname
+                            </span>
+                            <span class="JobTitle">
+                                @member1.JobTitle
+                            </span>
+                                <div class="mailDiv">
+                                    <a href="mailto:@member1.Email">
+                                        <span><i class="fa-sharp fa-solid fa-envelope"></i></span>
+                                        <span>@member1.Email</span>
+                                    </a>
+                                    <a href="tel:@member1.PhoneNumber">
+                                        <span><i class="fa-sharp fa-solid fa-phone"></i></span>
+                                        <span>@member1.PhoneNumber</span>
+                                    </a>
+                                    <div>
+                                        <span><i class="fa-sharp fa-solid fa-phone"></i></span>
+                                        <span>@member1.Address</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        }
+                    </div>
+                    <div class="col-12 bodyCvv">
+                        <div class="col-12 bodyCv">
+                            <h2>Education</h2>
+                        </div>
+                        @foreach(Education education in educations){
+                            <div class="row">
+                        <div class="col-3">
+                            @education.StartTime - @education.EndTime
+                            <br>
+                            @education.City - @education.Country
+                            <br>
+                            @education.GNO
+                        </div>
+                        <div class="col-9">
+                            @education.Degree
+                            <br>
+                            @education.SchoolName
+                            <br>
+                            @education.SchoolSection
+                            <br>
+                            @education.Description
+                        </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-12 bodyCvv ">
+                        <div class="col-12 bodyCv">
+                            <h2>Experience</h2>
+                        </div>
+                        @foreach(Experience experience in experiences)
+                        {
+                            <div class="row">
+                                <div class="col-3">
+                                    @experience.StartTime - @experience.EndTime
+                                    <br>
+                                </div>
+                                <div class="col-9" >
+                                    @experience.JobTitle - @experience.Name
+                                    <br>
+                                    @experience.Description
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-12 bodyCvv ">
+                        <div class="col-12 bodyCv">
+                            <h2>Courses</h2>
+                        </div>
+                        @foreach(Course course in courses)
+                        {
+                            <div class="row">
+                                <div class="col-3">
+                                    @if(course.StartDate != null){
+                                    @course.StartDate } - @if(course.EndDate != null){
+                                    @course.EndDate }
+                                    <br>
+                                    @course.City - @course.Country
+                                </div>
+                                <div class="col-9" >
+                                    @course.CourseName
+                                    <br>
+                                    @course.Institution
+                                    <br>
+                                    @course.Description
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-12 bodyCvv ">
+                        <div class="col-12 bodyCv">
+                            <h2>Languages</h2>
+                        </div>
+                        @foreach (Language language in languages )
+                        {
+                            <div class="row">
+                                <div class="col-3">
+                                    @language.Languages
+                                    <br>
+                                    @language.Level
+                                </div>
+                                <div class="col-9">
+                                    @language.Information
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-12 bodyCvv ">
+                        <div class="col-12 bodyCv">
+                            <h2>References</h2>
+                        </div>
+                        @foreach (Reference reference in references)
+                        {
+                            <div class="row">
+                                
+                                <div class="col-12">
+                                    @reference.Name @reference.SurName
+                                    <br>
+                                    @reference.JobTitle - @reference.Organisation
+                                    <br>
+                                    @reference.PhoneNumber
+                                    <br>
+                                    
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+   
 @*
     <footer class="border-top footer text-muted">
         <div class="container">
